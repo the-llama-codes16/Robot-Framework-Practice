@@ -1,0 +1,28 @@
+*** Settings ***
+Library           SeleniumLibrary
+Library           RPA.Excel.Files
+
+*** Variables ***
+${USERNAME}       \
+${PASSWORD}       \
+
+*** Keywords ***
+Login To Application
+    [Arguments]    ${USERNAME}    ${PASSWORD}
+    Input Text    xpath://input[@name='email']    ${USERNAME}
+    Sleep    3
+    Input Password    xpath://input[@name='passwd']    ${PASSWORD}
+    Sleep    3
+    Click Element    xpath://*[text()='Sign In']
+
+Login To Application Data Driven
+    Set Global Variable    ${USERNAME}
+    Set Global Variable    ${PASSWORD}
+    Open Workbook    C:/Users/salduair/Desktop/Robot Projects/Flight Application/FlightApplication/Resources/LoginData.xlsx
+    ${USERNAME}=    Get Cell Value    2    2
+    ${PASSWORD}=    Get Cell Value    3    2
+    Input Text    xpath://input[@name="email"]    ${USERNAME}
+    Sleep    3
+    Input Password    xpath://input[@name="password"]    ${PASSWORD}
+    Sleep    3
+    Click Element    xpath://button[text()='Login']
