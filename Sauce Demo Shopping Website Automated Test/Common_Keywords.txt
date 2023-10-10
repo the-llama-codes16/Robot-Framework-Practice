@@ -1,0 +1,39 @@
+*** Settings ***
+Library           SeleniumLibrary
+Resource          Common_Variables.txt
+
+*** Variables ***
+${Clear Text Field XPath Input}    \
+
+*** Keywords ***
+Go to Website
+    Open Browser    https://www.saucedemo.com/    Chrome
+    Maximize Browser Window
+
+Clear Text Field
+    [Arguments]    ${Clear Text Field XPath Input}
+    [Documentation]    *Clear Text Element* is available but sometimes, it does not work as expected. This keyword is created to ensure that any previous input in a text field is properly cleared.
+    ...    Reference: https://stackoverflow.com/questions/53518481/robot-framework-clear-element-text-keyword-is-not-working#:~:text=It%20seems%20like,CTRL%2Ba%2BBACKSPACE
+    Press Keys    ${Clear Text Field XPath Input}    CTRL+a+BACKSPACE
+
+Select Filter
+    [Arguments]    ${filter}
+    Select From List By Value    ${PRODUCT_FILTER_DROPDOWN_LIST_XPATH}    ${filter}
+    Capture Element Screenshot    ${PRODUCT_FILTER_DROPDOWN_LIST_XPATH}
+
+Log In
+    Input Text    ${USERNAME_TEXTFIELD_XPATH}    standard_user
+    Input Text    ${PASSWORD_TEXTFIELD_XPATH}    secret_sauce
+    Click Element    ${LOGIN_BUTTON_XPATH}
+
+
+Go to Website and Log In
+    Go to Website
+    Log In
+
+Select Products for Checkout
+    Go to Website and Log In
+    Click Element    ${2ND_ITEM_ADD_TO_CART_BUTTON}
+    Click Element    ${3RD_ITEM_ADD_TO_CART_BUTTON}
+    Click Element    ${SHOPPING_CART_ICON_XPATH}
+    Click Element    ${CHECKOUT_BUTTON_XPATH}
