@@ -1,4 +1,5 @@
 *** Settings ***
+Test Teardown     Close Browser
 Library           SeleniumLibrary
 Resource          Common_Keywords.txt
 Resource          Common_Variables.txt

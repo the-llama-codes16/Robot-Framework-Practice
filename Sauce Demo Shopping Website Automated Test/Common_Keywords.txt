@@ -26,7 +26,6 @@ Log In
     Input Text    ${PASSWORD_TEXTFIELD_XPATH}    secret_sauce
     Click Element    ${LOGIN_BUTTON_XPATH}
 
-
 Go to Website and Log In
     Go to Website
     Log In
@@ -37,3 +36,20 @@ Select Products for Checkout
     Click Element    ${3RD_ITEM_ADD_TO_CART_BUTTON}
     Click Element    ${SHOPPING_CART_ICON_XPATH}
     Click Element    ${CHECKOUT_BUTTON_XPATH}
+
+Checkout Products and Provide Info
+    Select Products for Checkout
+    Input Text    ${CHECKOUT_FIRSTNAME_TEXTFIELD_XPATH}    Jane
+    Input Text    ${CHECKOUT_LASTNAME_TEXTFIELD_XPATH}    Doe
+    Input Text    ${CHECKOUT_POSTAL_CODE_TEXTFIELD_XPATH}    1234
+    Click Element    ${CHECKOUT_CONTINUE_BUTTON_XPATH}
+
+Select Products and Confirm Checkout
+    Checkout Products and Provide Info
+    Click Element    ${CHECKOUT_OVERVIEW_FINISH_BUTTON}
+
+Checkout then Proceed to Log out
+    Select Products and Confirm Checkout
+    Click Button    ${CHECKOUT_COMPLETE_BACK_HOME_BUTTON_XPATH}
+    Click Button    ${HAMBURGER_ICON_XPATH}
+

@@ -10,7 +10,7 @@ Library           Collections
 *** Test Cases ***
 TS02-TC06-Check Elements on Products Screen
     Go to Website and Log In
-    Page Should Contain Element    ${PRODUCTS_SCREEN_TITLE_XPATH}
+    Page Should Contain Element    ${SCREEN_TITLE_XPATH}
     Page Should Contain Button    ${HAMBURGER_ICON_XPATH}
     Page Should Contain Element    ${SHOPPING_CART_ICON_XPATH}
     @{products}=    Get WebElements    xpath://div[@class='inventory_item']
@@ -47,7 +47,7 @@ TS02-TC08-Sort Products Z-A
 TS02-TC09-Sort Products Low to High
     Go to Website and Log In
     Select Filter    lohi
-    @{products}=    Get WebElements    ${PRODUCTS_DISPLAYED_XPATH}
+    @{products}=    Get WebElements    ${PRODUCTS_DISPLAYED_PRICES_XPATH}
     @{product_prices}=    Create List
     FOR    ${product}    IN    @{products}
         ${product_price}=    Get Text    ${product}
@@ -61,7 +61,7 @@ TS02-TC09-Sort Products Low to High
 TS02-TC10-Sort Products High to Low
     Go to Website and Log In
     Select Filter    hilo
-    @{products}=    Get WebElements    ${PRODUCTS_DISPLAYED_XPATH}
+    @{products}=    Get WebElements    ${PRODUCTS_DISPLAYED_PRICES_XPATH}
     @{product_prices}=    Create List
     FOR    ${product}    IN    @{products}
         ${product_price}=    Get Text    ${product}

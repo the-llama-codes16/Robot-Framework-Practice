@@ -1,4 +1,5 @@
 *** Settings ***
+Test Teardown     Close Browser
 Resource          Common_Keywords.txt
 Resource          Common_Variables.txt
 Library           SeleniumLibrary
@@ -28,3 +29,9 @@ TS04-TC13-Add Products in Products Screen
     Capture Element Screenshot    ${5TH_ITEM_ADD_TO_CART_BUTTON}    EMBED
     Element Text Should Be    ${SHOPPING_CART_ICON_XPATH}    2
     Capture Element Screenshot    ${SHOPPING_CART_ICON_XPATH}    EMBED
+
+TS07-TC24-Finish Checkout
+    Checkout Products and Provide Info
+    Click Element    ${CHECKOUT_OVERVIEW_FINISH_BUTTON}
+    Element Text Should Be    ${SCREEN_TITLE_XPATH}    Checkout: Complete!
+    Capture Page Screenshot    EMBED
